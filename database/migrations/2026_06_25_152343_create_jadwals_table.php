@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nidn', 10);
             $table->char('kelas', 1);
             $table->string('hari', 10);
-            $table->timestamp('jam'); // Sesuai instruksi ERD menggunakan timestamp
+            $table->timestamp('jam');
             $table->timestamps();
 
             // Foreign Keys

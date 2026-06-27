@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 
 class MatakuliahController extends Controller
 {
-    // 1. Menampilkan semua daftar mata kuliah
+    // Menampilkan semua daftar mata kuliah
     public function index()
     {
         $matakuliahs = Matakuliah::all();
         return view('admin.matakuliah.index', compact('matakuliahs'));
     }
 
-    // 2. Menampilkan form tambah mata kuliah
+    // Menampilkan form tambah mata kuliah
     public function create()
     {
         return view('admin.matakuliah.create');
     }
 
-    // 3. Menyimpan data mata kuliah baru ke database SQLite
+    // Menyimpan data mata kuliah baru ke database 'SQLite'
     public function store(Request $request)
     {
         $request->validate([
@@ -40,14 +40,14 @@ class MatakuliahController extends Controller
         return redirect()->route('admin.matakuliah.index')->with('success', 'Mata Kuliah berhasil ditambahkan!');
     }
 
-    // 4. Menampilkan form edit mata kuliah
+    // Menampilkan form edit mata kuliah
     public function edit($kode)
     {
         $matakuliah = Matakuliah::findOrFail($kode);
         return view('admin.matakuliah.edit', compact('matakuliah'));
     }
 
-    // 5. Memperbarui data mata kuliah di database
+    // Memperbarui data mata kuliah di database
     public function update(Request $request, $kode)
     {
         $matakuliah = Matakuliah::findOrFail($kode);
@@ -66,7 +66,7 @@ class MatakuliahController extends Controller
         return redirect()->route('admin.matakuliah.index')->with('success', 'Mata Kuliah berhasil diubah!');
     }
 
-    // 6. Menghapus data mata kuliah
+    // Menghapus data mata kuliah
     public function destroy($kode)
     {
         $matakuliah = Matakuliah::findOrFail($kode);

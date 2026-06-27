@@ -9,6 +9,8 @@
             font-family: sans-serif;
             padding: 20px;
             background: #f3f4f6;
+            margin: 0;
+            /* Penting untuk mereset default margin */
         }
 
         .kotak {
@@ -17,8 +19,11 @@
             border-radius: 6px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             max-width: 500px;
+            /* Ini akan membuat kotak selalu di tengah dan punya jarak 50px dari atas */
+            margin: 50px auto 0 auto;
         }
 
+        /* Agar inputan di dalam kotak rapi dan seragam */
         .input-group {
             margin-bottom: 15px;
         }
@@ -35,6 +40,8 @@
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
+            /* Agar padding tidak merusak lebar input */
         }
 
         .tombol {
@@ -54,9 +61,13 @@
         <h2>Edit Data Mahasiswa</h2>
 
         @if ($errors->any())
-        <div style="color: red;">
-            <ul>@foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach</ul>
-        </div>
+            <div style="color: red;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <form action="{{ route('admin.mahasiswa.update', $mahasiswa->npm) }}" method="POST">
@@ -76,16 +87,16 @@
             <div class="input-group">
                 <label>Dosen Wali:</label>
                 <select name="nidn" required>
-                    @foreach($dosens as $dosen)
-                    <option value="{{ $dosen->nidn }}" {{ $mahasiswa->nidn == $dosen->nidn ? 'selected' : '' }}>
-                        {{ $dosen->nama }}
-                    </option>
+                    @foreach ($dosens as $dosen)
+                        <option value="{{ $dosen->nidn }}" {{ $mahasiswa->nidn == $dosen->nidn ? 'selected' : '' }}>
+                            {{ $dosen->nama }}
+                        </option>
                     @endforeach
                 </select>
             </div>
 
             <button type="submit" class="tombol">Simpan Perubahan</button>
-            <a href="{{ route('admin.mahasiswa.index') }}">Batal</a>
+           <a href="{{ route('admin.mahasiswa.index') }}" style="margin-left: 15px; color: #64748b; text-decoration: none;">Batal</a>
         </form>
     </div>
 

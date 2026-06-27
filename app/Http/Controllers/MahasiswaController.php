@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    // 1. Tampilkan Semua Data Mahasiswa
+    // Tampilkan Semua Data Mahasiswa
     public function index()
     {
         // Menggunakan eager loading 'dosen' agar query lebih ringan
@@ -16,14 +16,14 @@ class MahasiswaController extends Controller
         return view('admin.mahasiswa.index', compact('mahasiswas'));
     }
 
-    // 2. Form Tambah Mahasiswa
+    // Form Tambah Mahasiswa
     public function create()
     {
         $dosens = Dosen::all(); // Mengambil semua dosen untuk pilihan Dosen Wali
         return view('admin.mahasiswa.create', compact('dosens'));
     }
 
-    // 3. Simpan Data Mahasiswa Baru
+    // Simpan Data Mahasiswa Baru
     public function store(Request $request)
     {
         $request->validate([
@@ -45,16 +45,16 @@ class MahasiswaController extends Controller
         return redirect()->route('admin.mahasiswa.index')->with('success', 'Data Mahasiswa berhasil ditambahkan!');
     }
 
-    // 4. Form Edit Data Mahasiswa
+    // Form Edit Data Mahasiswa
     public function edit($npm)
     {
-        // Gunakan where agar Laravel mencari di kolom 'npm', bukan 'id'
+        // Gunakan where agar Laravel mencari di kolom 'npm'
         $mahasiswa = Mahasiswa::where('npm', $npm)->firstOrFail();
         $dosens = Dosen::all();
         return view('admin.mahasiswa.edit', compact('mahasiswa', 'dosens'));
     }
 
-    // 5. Update Data Mahasiswa
+    // Update Data Mahasiswa
     public function update(Request $request, $npm)
     {
         // Gunakan where untuk mencocokkan npm
@@ -74,7 +74,7 @@ class MahasiswaController extends Controller
         return redirect()->route('admin.mahasiswa.index')->with('success', 'Data Mahasiswa berhasil diubah!');
     }
 
-    // 6. Hapus Data Mahasiswa
+    // Hapus Data Mahasiswa
     public function destroy($npm)
     {
         $mahasiswa = Mahasiswa::findOrFail($npm);

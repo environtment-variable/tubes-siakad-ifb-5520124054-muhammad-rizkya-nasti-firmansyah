@@ -28,7 +28,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         return view('admin.dashboard');
     })->name('dashboard');
 
-    // Nanti CRUD Dosen, Mahasiswa, Matakuliah, Jadwal ditaruh di sini
+    // Tempat CRUD Dosen, Mahasiswa, Matakuliah, Jadwal disimpan
     Route::resource('matakuliah', MatakuliahController::class)->parameters([
         'matakuliah' => 'kode_matakuliah' // Menggunakan kode_matakuliah sebagai primary key di URL
     ]);
@@ -37,7 +37,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('jadwal', JadwalController::class);
 
     Route::resource('dosen', DosenController::class)->parameters([
-        'dosen' => 'nidn' // Beritahu Laravel kalau parameter URL-nya adalah {nidn}, bukan {id}
+        'dosen' => 'nidn' // Beritahu Laravel kalau parameter URL-nya adalah {nidn}
     ]);
 
     Route::resource('mahasiswa', MahasiswaController::class)->parameters([
@@ -48,11 +48,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 // Kelompok Rute Khusus Mahasiswa
 Route::middleware(['auth', 'role:mahasiswa'])->prefix('mahasiswa')->name('mahasiswa.')->group(function () {
 
-    // 1. Pasang KrsController langsung di rute /dashboard utama mahasiswa
+    // Pasang KrsController langsung di rute /dashboard utama mahasiswa
     // URL di browser: 127.0.0.1:8000/mahasiswa/dashboard
     Route::get('/dashboard', [KrsController::class, 'index'])->name('dashboard');
 
-    // 2. Hapus kata '/mahasiswa' di awal rute berikut karena sudah diwakili oleh prefix grup di atas!
     // URL di browser otomatis menjadi: 127.0.0.1:8000/mahasiswa/krs/pilih
     Route::get('/krs/pilih', [KrsController::class, 'create'])->name('pilih_krs');
     Route::post('/krs/simpan', [KrsController::class, 'store'])->name('simpan_krs');

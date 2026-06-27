@@ -16,43 +16,51 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 1. Seed Data Dosen Utama (untuk Dosen Wali & Pengajar)
+        // Seed Data Dosen Utama (untuk Dosen Wali & Pengajar)
         $dosen = Dosen::create([
             'nidn' => '1111111111',
             'nama' => 'Dr. Aris Permana, M.T.'
         ]);
 
-        // 2. Seed Data Mahasiswa (Menggunakan data Anda)
+        // Seed Data Mahasiswa (Menggunakan data Anda)
         $mahasiswa = Mahasiswa::create([
             'npm' => '5520124054',
             'nidn' => '1111111111', // Wali ke dosen di atas
             'nama' => 'MUHAMMAD RIZKYA NASTI FIRMANSYAH'
         ]);
 
-        // 3. Seed Akun Users untuk Autentikasi Login
+        // Seed Akun Users untuk Autentikasi Login
         // Akun Admin
         User::create([
             'name' => 'Admin SIAKAD',
             'email' => 'admin@siakad.com',
             'password' => Hash::make('password123'),
-                     'role' => 'admin',
-                     'username_kaitan' => null,
+            'role' => 'admin',
+            'username_kaitan' => null,
         ]);
 
         // Akun Mahasiswa (Terhubung dengan data mahasiswa Anda via username_kaitan)
         User::create([
             'name' => 'Muhammad Rizkya',
-            'email' => 'mahasiswa@siakad.com',
+            'email' => 'mahasiswa1@siakad.com',
             'password' => Hash::make('password123'),
-                     'role' => 'mahasiswa',
-                     'username_kaitan' => '5520124054', // Menyimpan NPM untuk relasi KRS nanti
+            'role' => 'mahasiswa',
+            'username_kaitan' => '5520124054', // Menyimpan NPM untuk relasi KRS nantinya
         ]);
 
-        // 4. Seed Data Mata Kuliah Contoh
+        User::create([
+            'name' => 'Muhammad Qory',
+            'email' => 'mahasiswa2@siakad.com',
+            'password' => Hash::make('password123'),
+            'role' => 'mahasiswa',
+            'username_kaitan' => '5520124055',
+        ]);
+
+        // Seed Data Mata Kuliah Contoh
         Matakuliah::create([
             'kode_matakuliah' => 'IF53413',
             'nama_matakuliah' => 'Pemrograman Web II',
-            'sks' => 3
+            'sks' => 4
         ]);
 
         Matakuliah::create([

@@ -10,7 +10,6 @@ class Jadwal extends Model
     use HasFactory;
 
     protected $table = 'jadwals';
-    // primaryKey default-nya adalah 'id' (integer), jadi tidak perlu ditulis ulang jika menggunakan $table->id() di migrasi
 
     protected $fillable = [
         'kode_matakuliah',

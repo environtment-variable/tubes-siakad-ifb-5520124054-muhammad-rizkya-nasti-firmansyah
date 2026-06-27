@@ -16,6 +16,10 @@
             padding: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
+            /* Tambahkan 3 baris ini untuk mensejajarkan konten */
+            display: flex;
+            align-items: center; 
+            justify-content: space-between;
         }
 
         nav a {
@@ -43,7 +47,6 @@
             padding: 8px 12px;
             cursor: pointer;
             border-radius: 4px;
-            float: right;
         }
     </style>
 </head>

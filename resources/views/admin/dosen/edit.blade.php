@@ -9,6 +9,12 @@
             font-family: sans-serif;
             padding: 20px;
             background: #f3f4f6;
+            /* Tambahkan ini untuk memusatkan secara vertikal & horizontal */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 0;
         }
 
         .kotak {
@@ -16,6 +22,8 @@
             padding: 20px;
             border-radius: 6px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            /* Ubah max-width ke width agar responsif */
             max-width: 500px;
         }
 
@@ -61,13 +69,13 @@
 
         {{-- Menampilkan pesan error validasi jika ada --}}
         @if ($errors->any())
-        <div style="color: #dc2626; margin-bottom: 15px;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div style="color: #dc2626; margin-bottom: 15px;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <form action="{{ route('admin.dosen.update', $dosen->nidn) }}" method="POST">
@@ -85,7 +93,7 @@
             </div>
 
             <button type="submit" class="tombol">Simpan Perubahan</button>
-            <a href="{{ route('admin.dosen.index') }}" style="margin-left: 10px; color: #64748b;">Batal</a>
+            <a href="{{ route('admin.dosen.index') }}" style="margin-left: 15px; color: #64748b; text-decoration: none;">Batal</a>
         </form>
     </div>
 
